@@ -1,8 +1,9 @@
-import { TRPCError, initTRPC } from "@trpc/server";
-import superjson from "superjson";
-import { ZodError } from "zod";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { TRPCError, initTRPC } from '@trpc/server'
+import superjson from 'superjson'
+import { ZodError } from 'zod'
 
-import { type Context } from "./context";
+import { type Context } from './context'
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -11,12 +12,11 @@ const t = initTRPC.context<Context>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
-      },
-    };
-  },
-});
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null
+      }
+    }
+  }
+})
 
 const isAuthed = t.middleware(async ({ ctx, next }) => {
   // TODO: add auth middleware
@@ -29,13 +29,13 @@ const isAuthed = t.middleware(async ({ ctx, next }) => {
 
   return next({
     ctx: {
-      ...ctx,
+      ...ctx
       // auth: ctx.auth,
-    },
-  });
-});
+    }
+  })
+})
 
-export const createTRPCRouter = t.router;
-export const publicProcedure = t.procedure;
-export const protectedProcedure = t.procedure.use(isAuthed);
+export const createTRPCRouter = t.router
+export const publicProcedure = t.procedure
+export const protectedProcedure = t.procedure.use(isAuthed)
 //TODO: add role/permissions based procedures

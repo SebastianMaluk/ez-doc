@@ -1,10 +1,9 @@
-import { api } from "@/lib/api/server";
-import HelloFromClient from "./hello-from-client";
-
+import { api } from '@/lib/api/server'
+import HelloFromClient from './hello-from-client'
 
 export default async function Page() {
   const { greeting } = await api.example.hello.fetch({
-    text: "Test RSC TRPC Call",
+    text: 'Test RSC TRPC Call'
   })
   return (
     <div>
