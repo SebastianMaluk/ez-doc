@@ -20,9 +20,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         inter.className
       )}
     >
-      <head />
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="description" content={metadata.description} />
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
+      </head>
       <ClientProviders>
-        <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+        <body className="h-screen pt-12 bg-slate-50 antialiased">
           <Navbar />
           <div className="container max-w-7xl mx-auto h-full pt-12 ">{children}</div>
         </body>
