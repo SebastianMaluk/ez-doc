@@ -3,8 +3,8 @@ import { type NextRequest } from "next/server";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { createContextInner } from "@/server/api/context";
 import { appRouter } from "@/server/api/root";
-import dotenv from "dotenv";
-dotenv.config();
+import { env } from "@/env.mjs";
+
 
 export default function handler(req: NextRequest) {
   return fetchRequestHandler({
@@ -20,7 +20,7 @@ export default function handler(req: NextRequest) {
       });
     },
     onError:
-      process.env.NODE_ENV === "development"
+      env.NODE_ENV === "development"
         ? ({ path, error }) => {
             console.error(
               `❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}`
