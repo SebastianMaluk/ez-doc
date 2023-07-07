@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
 import { ClientProviders } from './client-providers'
 import Navbar from '@/components/Navbar'
+import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata = {
   title: 'Easy Doctor',
@@ -27,8 +28,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <ClientProviders>
         <body className="h-screen pt-12 bg-slate-50 antialiased">
-          <Navbar />
-          <div className="container max-w-7xl mx-auto h-full pt-12 ">{children}</div>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Navbar />
+            <div className="container max-w-7xl mx-auto h-full pt-12 ">{children}</div>
+          </ThemeProvider>
         </body>
       </ClientProviders>
     </html>
