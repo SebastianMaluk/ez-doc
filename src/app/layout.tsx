@@ -14,23 +14,17 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        'bg-white text-slate-900 antialiased light dark:bg-slate-900 dark:text-slate-100',
-        inter.className
-      )}
-    >
+    <html lang="en" className={cn('bg-white text-slate-900 antialiased light', inter.className)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="description" content={metadata.description} />
         <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
       </head>
       <ClientProviders>
-        <body className="h-screen pt-12 bg-slate-50 antialiased">
+        <body className="h-screen bg-slate-50 antialiased dark:bg-slate-900 dark:text-slate-100">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
-            <div className="container max-w-7xl mx-auto h-full pt-12 ">{children}</div>
+            <div className="container max-w-7xl mx-auto h-full">{children}</div>
           </ThemeProvider>
         </body>
       </ClientProviders>
