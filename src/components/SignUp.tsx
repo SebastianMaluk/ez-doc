@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { Route } from 'next'
 import { Icons } from './Icons'
 import UserAuthForm from './UserAuthForm'
 
@@ -14,7 +15,7 @@ const SignUp = () => {
         <p className='px-8 text-center text-sm text-slate-800 dark:text-slate-300'>
           ¿Ya tienes una cuenta?{' '}
           <Link
-            href='/sign-up'
+            href={'/sign-up' as Route}
             className='text-slate-900 dark:text-slate-300 text-sm underline underline-offset-4'
           >
             Ingresa

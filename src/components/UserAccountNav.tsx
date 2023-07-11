@@ -12,6 +12,7 @@ import {
 } from './ui/DropdownMenu'
 import { Link } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import { Route } from 'next'
 
 interface UserAccountNavProps {
   user: Pick<User, 'name' | 'image' | 'email'>
@@ -37,7 +38,9 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
 
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href='/profile'>Settings</Link>
+          {/* TODO: Add profile route */}
+          {/* <Link href='/profile'>Settings</Link> */}
+          <Link href={'' as Route}>Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
