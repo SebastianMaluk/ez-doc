@@ -1,7 +1,9 @@
 import { api } from '@/lib/api/server'
 import HelloFromClient from './hello-from-client'
+import { getAuthSession } from '@/lib/auth'
 
 export default async function Page() {
+  const session = await getAuthSession()
   const { greeting } = await api.example.hello.fetch({
     text: 'Test RSC TRPC Call'
   })
