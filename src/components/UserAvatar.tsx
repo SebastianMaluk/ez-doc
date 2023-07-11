@@ -9,6 +9,7 @@ interface UserAvatarProps extends AvatarProps {
   user: Pick<User, 'name' | 'image'>
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
   return (
     <Avatar>
