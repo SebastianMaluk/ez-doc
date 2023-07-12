@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/Avatar'
 import { User } from 'next-auth'
 import Image from 'next/image'
 import { FC } from 'react'
-import { Icons } from './Icons'
+import { User as UserIcon } from 'lucide-react'
 
 interface UserAvatarProps extends AvatarProps {
   user: Pick<User, 'name' | 'image'>
@@ -20,7 +20,7 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
       ) : (
         <AvatarFallback>
           <span className='sr-only'>{user?.name}</span>
-          <Icons.user />
+          <UserIcon />
         </AvatarFallback>
       )}
     </Avatar>
