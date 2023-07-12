@@ -6,7 +6,8 @@ import {
   timestamp,
   varchar,
   int,
-  primaryKey
+  primaryKey,
+  boolean
 } from 'drizzle-orm/mysql-core'
 import { relations, InferModel } from 'drizzle-orm'
 import { createSelectSchema } from 'drizzle-zod'
@@ -73,47 +74,68 @@ export const carts = mysqlTable('carts', {
   user_id: varchar('user_id', { length: 255 }).notNull()
 })
 
-export const cartsRelations = relations(carts, ({ one }) => ({
+export const cartsRelations = relations(carts, ({ one, many }) => ({
   user: one(users, {
     fields: [carts.user_id],
     references: [users.id]
-  })
+  }),
+  examsToCarts: many(examsToCarts)
 }))
 
 export const exams = mysqlTable('exams', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
-  preparation: text('preparation').notNull(),
-  type: mysqlEnum('type', ['images', 'laboratory']).notNull()
+  description: text('description').notNull(),
+  preparation: text('preparation'),
+  type: mysqlEnum('type', ['image', 'laboratory', 'other']).notNull()
 })
 
-export const examsRelations = relations(exams, ({ many }) => ({
+export type ExamModel = InferModel<typeof exams, 'select'>
+
+export const examsRelations = relations(exams, ({ one, many }) => ({
   tags: many(tags),
-  categories: many(categories)
+  images: one(images, {
+    fields: [exams.id],
+    references: [images.exam_id]
+  }),
+  examsToCarts: many(examsToCarts)
 }))
 
-export const categories = mysqlTable('categories', {
-  id: serial('id').primaryKey(),
-  name: varchar('name', { length: 255 }).notNull()
+export const images = mysqlTable('images', {
+  exam_id: int('exam_id').notNull(),
+  laterality: varchar('laterality', { length: 255 }),
+  contrast: boolean('contrast').notNull()
 })
 
-export const categoriesRelations = relations(categories, ({ one }) => ({
+export const labsRelations = relations(images, ({ one }) => ({
   exams: one(exams, {
-    fields: [categories.id],
+    fields: [images.exam_id],
     references: [exams.id]
   })
 }))
 
-export const categoriesToExams = mysqlTable('categoriesToExams', {
-  id: serial('id').primaryKey(),
-  category_id: varchar('category_id', { length: 255 }).notNull(),
-  exam_id: varchar('exam_id', { length: 255 }).notNull()
+export const examsToCarts = mysqlTable('examsToCarts', {
+  cart_id: int('cart_id').notNull(),
+  exam_id: int('exam_id').notNull()
 })
+
+export const examsToCartsRelations = relations(examsToCarts, ({ one }) => ({
+  carts: one(carts, {
+    fields: [examsToCarts.cart_id],
+    references: [carts.id]
+  }),
+  exams: one(exams, {
+    fields: [examsToCarts.exam_id],
+    references: [exams.id]
+  })
+}))
 
 export const tags = mysqlTable('tags', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull()
 })
+
+export type TagModel = InferModel<typeof tags, 'select'>
 
 export const tagsRelations = relations(tags, ({ one }) => ({
   exams: one(exams, {
@@ -123,7 +145,6 @@ export const tagsRelations = relations(tags, ({ one }) => ({
 }))
 
 export const tagsToExams = mysqlTable('tagsToExams', {
-  id: serial('id').primaryKey(),
   tag_id: varchar('tag_id', { length: 255 }).notNull(),
   exam_id: varchar('exam_id', { length: 255 }).notNull()
 })
