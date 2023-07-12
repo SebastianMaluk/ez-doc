@@ -5,6 +5,7 @@ import { ClientProviders } from './client-providers'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/Toaster'
+import Footer from '@/components/ui/Footer'
 
 export const metadata = {
   title: 'Easy Doctor',
@@ -32,11 +33,12 @@ export default function RootLayout({
         <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
       </head>
       <ClientProviders>
-        <body className='h-screen bg-slate-50 antialiased dark:bg-slate-900 dark:text-slate-100'>
+        <body className='flex flex-col min-h-screen bg-slate-50 antialiased dark:bg-slate-900 dark:text-slate-100'>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
             <Navbar />
             {authModal}
-            <div className='container max-w-7xl mx-auto h-full'>{children}</div>
+            <div className='container flex-grow max-w-7xl mx-auto'>{children}</div>
+            <Footer />
             <Toaster />
           </ThemeProvider>
         </body>
