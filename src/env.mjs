@@ -4,8 +4,8 @@ import { z } from 'zod'
 const server = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
   // CLERK_SECRET_KEY: z.string().min(1),
-  DATABASE_URL: z.string().min(1),
-  DATABASE_URL_STAGING: z.string().min(1)
+  DATABASE_URL: z.string().min(1)
+  // DATABASE_URL_STAGING: z.string().min(1)
 })
 
 const client = z.object({
