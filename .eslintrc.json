@@ -25,5 +25,8 @@
       "react": {
         "version": "detect"
       }
-    }
+    },
+    "ignorePatterns": [
+      "src/components/ui/"
+    ]
 }
