@@ -1,20 +1,21 @@
-import { api } from '@/lib/api/server'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import HelloFromClient from './hello-from-client'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Product from '@/components/Product'
-import { getAuthSession } from '@/lib/auth'
-import Balancer from 'react-wrap-balancer'
-import Link from 'next/link'
+import Link from "next/link"
+import Balancer from "react-wrap-balancer"
 
-import { Input } from '@/components/ui/Input'
+import { api } from "@/lib/api/server"
+import { getAuthSession } from "@/lib/auth"
+import { Input } from "@/components/ui/input"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Product from "@/components/Product"
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import HelloFromClient from "./hello-from-client"
 
 export default async function Page() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const session = await getAuthSession()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { greeting } = await api.example.hello.fetch({
-    text: 'Test RSC TRPC Call'
+    text: "Test RSC TRPC Call",
   })
   return (
     <div className='flex flex-col items-center justify-center py-6'>
@@ -44,7 +45,12 @@ export default async function Page() {
             Subscríbete a nuestro newsletter de EZ-Doc y aprende a tomar control de tu salud
           </Balancer>
         </p>
-        <Input type='email' placeholder='Email' />
+        <div className='flex flex-row gap-5'>
+          <Input type='email' placeholder='Email' />
+          <button className='justify-items-center bg-indigo-300 px-5 rounded-lg'>
+            Subscribirme
+          </button>
+        </div>
       </div>
       {/* <p>{greeting}</p> */}
       {/* <HelloFromClient /> */}

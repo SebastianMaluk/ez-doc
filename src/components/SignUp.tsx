@@ -1,7 +1,8 @@
-import Link from 'next/link'
-import type { Route } from 'next'
-import { Stethoscope } from 'lucide-react'
-import UserAuthForm from './UserAuthForm'
+import type { Route } from "next"
+import Link from "next/link"
+import { Stethoscope } from "lucide-react"
+
+import UserAuthForm from "./UserAuthForm"
 
 const SignUp = () => {
   return (
@@ -13,9 +14,9 @@ const SignUp = () => {
         {/* sign in form */}
         <UserAuthForm />
         <p className='px-8 text-center text-sm text-slate-800 dark:text-slate-300'>
-          ¿Ya tienes una cuenta?{' '}
+          ¿Ya tienes una cuenta?{" "}
           <Link
-            href={'/sign-up' as Route}
+            href={"/sign-up" as Route}
             className='text-slate-900 dark:text-slate-300 text-sm underline underline-offset-4'
           >
             Ingresa

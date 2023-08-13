@@ -1,11 +1,13 @@
-'use client'
+"use client"
 
-import { FC, useState } from 'react'
-import { Button } from './ui/Button'
-import { cn } from '@/lib/utils'
-import { signIn } from 'next-auth/react'
-import { Icons } from './Icons'
-import { useToast } from './hooks/use-toast'
+import { FC, useState } from "react"
+import { signIn } from "next-auth/react"
+
+import { cn } from "@/lib/utils"
+
+import { Icons } from "./Icons"
+import { Button } from "./ui/button"
+import { useToast } from "./ui/use-toast"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -18,19 +20,19 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
     setIsLoading(true)
 
     try {
-      await signIn('google')
+      await signIn("google")
     } catch (error) {
       toast({
-        title: 'Hubo un error',
-        description: 'No se pudo iniciar sesión con Google',
-        variant: 'destructive'
+        title: "Hubo un error",
+        description: "No se pudo iniciar sesión con Google",
+        variant: "destructive",
       })
     } finally {
       setIsLoading(false)
     }
   }
   return (
-    <div className={cn('flex justify-center', className)} {...props}>
+    <div className={cn("flex justify-center", className)} {...props}>
       <Button
         onClick={loginWithGoogle}
         disabled={isLoading}

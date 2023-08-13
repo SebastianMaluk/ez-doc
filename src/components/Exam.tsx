@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import { FC } from 'react'
+import { FC } from "react"
 
 interface examProps {
   exam: {
     name: string
     description: string
     preparation: string | null
-    type: 'image' | 'laboratory' | 'other'
+    type: "image" | "laboratory" | "other"
     tag: string
     laterality: string | null
     contrast: boolean | null
@@ -15,11 +15,11 @@ interface examProps {
 }
 
 const Exam: FC<examProps> = ({ exam }) => {
-  if (!exam.preparation) exam.preparation = 'No requiere preparación'
-  if (!exam.laterality) exam.laterality = 'No aplica'
-  let tipo = ''
-  if (exam.type === 'image') tipo = 'Imagen'
-  if (exam.type === 'laboratory') tipo = 'Laboratorio'
+  if (!exam.preparation) exam.preparation = "No requiere preparación"
+  if (!exam.laterality) exam.laterality = "No aplica"
+  let tipo = ""
+  if (exam.type === "image") tipo = "Imagen"
+  if (exam.type === "laboratory") tipo = "Laboratorio"
   return (
     <div className='flex flex-col items-start justify-center space-y-4 p-6'>
       <h1 className='text-4xl font-bold'>{exam.name}</h1>
@@ -39,7 +39,7 @@ const Exam: FC<examProps> = ({ exam }) => {
         <strong>Lateralidad:</strong> {exam.laterality}
       </p>
       <p className='text-xl'>
-        <strong>Contraste:</strong> {exam.contrast ? 'Yes' : 'No'}
+        <strong>Contraste:</strong> {exam.contrast ? "Yes" : "No"}
       </p>
     </div>
   )

@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { Balancer } from 'react-wrap-balancer'
+import { FC } from "react"
+import { Balancer } from "react-wrap-balancer"
 
 const Footer: FC = () => {
   return (
@@ -8,7 +8,7 @@ const Footer: FC = () => {
         <p className='text-xs md:text-base text-slate-800 dark:text-slate-100'>
           <Balancer>
             Nos interesa saber de ti. Para consultas, reclamos, sugerencias, o cualquier otro tema,
-            escríbenos a{' '}
+            escríbenos a{" "}
             <a href='mailto:easydoctorcl@gmail.com' className='underline'>
               easydoctorcl@gmail.com
             </a>

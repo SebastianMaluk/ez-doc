@@ -1,10 +1,12 @@
-'use client'
+"use client"
+
 // TODO: uncomment when Clerk is ready
 // import { ClerkProvider } from "@clerk/nextjs/app-beta/client"
-import { api } from '@/lib/api/client'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren } from "react"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { env } from '@/env.mjs'
+import { env } from "@/env.mjs"
+
+import { api } from "@/lib/api/client"
 
 export function ClientProviders({ children }: PropsWithChildren) {
   return (

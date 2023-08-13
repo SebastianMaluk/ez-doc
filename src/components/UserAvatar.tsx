@@ -1,12 +1,13 @@
-import { AvatarProps } from '@radix-ui/react-avatar'
-import { Avatar, AvatarFallback } from '@/components/ui/Avatar'
-import { User } from 'next-auth'
-import Image from 'next/image'
-import { FC } from 'react'
-import { User as UserIcon } from 'lucide-react'
+import { FC } from "react"
+import Image from "next/image"
+import { AvatarProps } from "@radix-ui/react-avatar"
+import { User as UserIcon } from "lucide-react"
+import { User } from "next-auth"
+
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 interface UserAvatarProps extends AvatarProps {
-  user: Pick<User, 'name' | 'image'>
+  user: Pick<User, "name" | "image">
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

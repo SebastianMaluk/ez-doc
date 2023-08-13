@@ -1,22 +1,26 @@
-import { cn } from '@/lib/utils'
-import '@/styles/globals.css'
-import { Inter } from 'next/font/google'
-import { ClientProviders } from './client-providers'
-import Navbar from '@/components/Navbar'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/Toaster'
-import Footer from '@/components/ui/Footer'
+import { cn } from "@/lib/utils"
+
+import "@/styles/globals.css"
+
+import { Inter } from "next/font/google"
+
+import { Toaster } from "@/components/ui/toaster"
+import Footer from "@/components/Footer"
+import Navbar from "@/components/Navbar"
+import { ThemeProvider } from "@/components/theme-provider"
+
+import { ClientProviders } from "./client-providers"
 
 export const metadata = {
-  title: 'Easy Doctor',
-  description: 'Exams made easy'
+  title: "Easy Doctor",
+  description: "Exams made easy",
 }
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export default function RootLayout({
   children,
-  authModal
+  authModal,
 }: {
   children: React.ReactNode
   authModal: React.ReactNode
@@ -24,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={cn('bg-white text-slate-900 antialiased light', inter.className)}
+      className={cn("bg-white text-slate-900 antialiased light", inter.className)}
       suppressHydrationWarning
     >
       <head>

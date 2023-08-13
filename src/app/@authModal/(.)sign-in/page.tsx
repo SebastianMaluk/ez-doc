@@ -1,6 +1,7 @@
-import CloseModal from '@/components/CloseModal'
-import SignIn from '@/components/SignIn'
-import { FC } from 'react'
+import { FC } from "react"
+
+import CloseModal from "@/components/CloseModal"
+import SignIn from "@/components/SignIn"
 
 const page: FC = () => {
   return (

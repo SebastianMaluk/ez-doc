@@ -1,8 +1,9 @@
-import Exam from '@/components/Exam'
-import { db } from '@/server/db'
-import { exams, tags, images, tagsToExams } from '@/server/db/schema'
-import { eq } from 'drizzle-orm'
-import { FC } from 'react'
+import { FC } from "react"
+import { db } from "@/server/db"
+import { exams, images, tags, tagsToExams } from "@/server/db/schema"
+import { eq } from "drizzle-orm"
+
+import Exam from "@/components/Exam"
 
 interface pageProps {
   params: {
@@ -19,7 +20,7 @@ const page: FC<pageProps> = async ({ params }: pageProps) => {
       type: exams.type,
       tag: tags.name,
       laterality: images.laterality,
-      contrast: images.contrast
+      contrast: images.contrast,
     })
     .from(exams)
     .innerJoin(tagsToExams, eq(tagsToExams.exam_id, exams.id))

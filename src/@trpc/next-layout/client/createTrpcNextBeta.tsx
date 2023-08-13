@@ -2,11 +2,11 @@
 // /* eslint-disable @typescript-eslint/no-unsafe-call */
 // /* eslint-disable @typescript-eslint/no-unsafe-return */
 
-'use client'
+"use client"
 
-import { useMemo, useState } from 'react'
-import { QueryClientProvider } from '@tanstack/react-query'
-import type { CreateTRPCClientOptions } from '@trpc/client'
+import { useMemo, useState } from "react"
+import { QueryClientProvider } from "@tanstack/react-query"
+import type { CreateTRPCClientOptions } from "@trpc/client"
 import {
   createHooksInternal,
   createReactProxyDecoration,
@@ -15,10 +15,10 @@ import {
   type CreateReactUtilsProxy,
   type CreateTRPCReactOptions,
   type CreateTRPCReactQueryClientConfig,
-  type DecoratedProcedureRecord
-} from '@trpc/react-query/shared'
-import type { AnyRouter, ProtectedIntersection } from '@trpc/server'
-import { createFlatProxy } from '@trpc/server/shared'
+  type DecoratedProcedureRecord,
+} from "@trpc/react-query/shared"
+import type { AnyRouter, ProtectedIntersection } from "@trpc/server"
+import { createFlatProxy } from "@trpc/server/shared"
 
 export type WithTRPCConfig<TRouter extends AnyRouter> = CreateTRPCClientOptions<TRouter> &
   CreateTRPCReactQueryClientConfig
@@ -40,14 +40,14 @@ export interface CreateTRPCNextBase<TRouter extends AnyRouter> {
  */
 export type CreateTRPCNext<TRouter extends AnyRouter, TFlags> = ProtectedIntersection<
   CreateTRPCNextBase<TRouter>,
-  DecoratedProcedureRecord<TRouter['_def']['record'], TFlags>
+  DecoratedProcedureRecord<TRouter["_def"]["record"], TFlags>
 >
 
 export function createTRPCNextBeta<TRouter extends AnyRouter, TFlags = null>(
   opts: WithTRPCOptions<TRouter>
 ): CreateTRPCNext<TRouter, TFlags> {
   const trpc = createHooksInternal<TRouter>({
-    unstable_overrides: opts.unstable_overrides
+    unstable_overrides: opts.unstable_overrides,
   })
 
   const TRPCProvider = ({ children }: { children: React.ReactNode }) => {
@@ -56,7 +56,7 @@ export function createTRPCNextBeta<TRouter extends AnyRouter, TFlags = null>(
       const trpcClient = trpc.createClient(opts)
       return {
         queryClient,
-        trpcClient
+        trpcClient,
       }
     })
 
@@ -70,7 +70,7 @@ export function createTRPCNextBeta<TRouter extends AnyRouter, TFlags = null>(
   }
 
   return createFlatProxy((key) => {
-    if (key === 'useContext') {
+    if (key === "useContext") {
       return () => {
         const context = trpc.useContext()
         // create a stable reference of the utils context
@@ -81,7 +81,7 @@ export function createTRPCNextBeta<TRouter extends AnyRouter, TFlags = null>(
       }
     }
 
-    if (key === 'Provider') {
+    if (key === "Provider") {
       return TRPCProvider
     }
 

@@ -1,24 +1,26 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { NextAuthOptions, getServerSession } from 'next-auth'
-import { PlanetScaleAdapter, users } from './adapters'
-import { Adapter } from 'next-auth/adapters'
-import { db } from '@/server/db'
-import GoogleProvider from 'next-auth/providers/google'
-import { eq } from 'drizzle-orm'
-import * as schema from '@/server/db/schema'
+import { db } from "@/server/db"
+import * as schema from "@/server/db/schema"
+import { eq } from "drizzle-orm"
+import { getServerSession, NextAuthOptions } from "next-auth"
+import { Adapter } from "next-auth/adapters"
+import GoogleProvider from "next-auth/providers/google"
+
+import { PlanetScaleAdapter, users } from "./adapters"
+
 export const authOptions: NextAuthOptions = {
   adapter: PlanetScaleAdapter(db, schema) as Adapter,
   session: {
-    strategy: 'jwt'
+    strategy: "jwt",
   },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-    })
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
   ],
   pages: {
-    signIn: '/auth/signin'
+    signIn: "/auth/signin",
   },
   callbacks: {
     async session({ token, session }) {
@@ -41,13 +43,13 @@ export const authOptions: NextAuthOptions = {
       return {
         id: dbUser[0].id,
         name: dbUser[0].name,
-        email: dbUser[0].email
+        email: dbUser[0].email,
       }
     },
     redirect() {
-      return '/'
-    }
-  }
+      return "/"
+    },
+  },
 }
 
 export const getAuthSession = () => getServerSession(authOptions)

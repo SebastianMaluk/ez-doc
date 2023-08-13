@@ -1,6 +1,7 @@
-'use client'
-import { useCallback, useRef, useEffect, MouseEventHandler } from 'react'
-import { useRouter } from 'next/navigation'
+"use client"
+
+import { MouseEventHandler, useCallback, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 
 const Modal = ({ children }: { children?: React.ReactNode }) => {
   const router = useRouter()

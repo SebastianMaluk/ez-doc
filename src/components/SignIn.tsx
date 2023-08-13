@@ -1,5 +1,6 @@
-import { Stethoscope } from 'lucide-react'
-import UserAuthForm from './UserAuthForm'
+import { Stethoscope } from "lucide-react"
+
+import UserAuthForm from "./UserAuthForm"
 
 const SignIn = () => {
   return (

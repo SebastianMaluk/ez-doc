@@ -19,11 +19,11 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '@/components/ui/Table'
+} from '@/components/ui/table'
 
-import { DataTablePagination } from './Data-table-pagination'
+import { DataTablePagination } from './data-table-pagination'
 import { SyntheticEvent, useState } from 'react'
-import { Input } from '@/components/ui/Input'
+import { Input } from '@/components/ui/input'
 import { useRouter } from 'next/navigation'
 import { Route } from 'next'
 

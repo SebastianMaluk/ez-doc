@@ -1,21 +1,22 @@
-'use client'
+"use client"
 
-import { User } from 'next-auth'
-import { FC } from 'react'
-import UserAvatar from './UserAvatar'
+import { FC } from "react"
+import { Route } from "next"
+import { Link } from "lucide-react"
+import { User } from "next-auth"
+import { signOut } from "next-auth/react"
+
 import {
+  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenu,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from './ui/DropdownMenu'
-import { Link } from 'lucide-react'
-import { signOut } from 'next-auth/react'
-import { Route } from 'next'
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
+import UserAvatar from "./UserAvatar"
 
 interface UserAccountNavProps {
-  user: Pick<User, 'name' | 'image' | 'email'>
+  user: Pick<User, "name" | "image" | "email">
 }
 
 const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
@@ -40,19 +41,19 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
         <DropdownMenuItem asChild>
           {/* TODO: Add profile route */}
           {/* <Link href='/profile'>Settings</Link> */}
-          <Link href={'' as Route}>Settings</Link>
+          <Link href={"" as Route}>Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onSelect={(event) => {
             event.preventDefault()
             signOut({
-              callbackUrl: '/'
+              callbackUrl: "/",
             })
           }}
           className='cursor-pointer'
         >
-          {' '}
+          {" "}
           Sign out
         </DropdownMenuItem>
       </DropdownMenuContent>

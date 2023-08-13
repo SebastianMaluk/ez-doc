@@ -1,9 +1,10 @@
-'use client'
+"use client"
 
-import { X } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { FC } from 'react'
-import { Button } from './ui/Button'
+import { FC } from "react"
+import { useRouter } from "next/navigation"
+import { X } from "lucide-react"
+
+import { Button } from "./ui/button"
 
 const CloseModal: FC = () => {
   const router = useRouter()
