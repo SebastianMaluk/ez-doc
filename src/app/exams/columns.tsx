@@ -1,6 +1,6 @@
 "use client"
 
-import { ExamModel, TagModel } from "@/server/db/schema"
+import { ExamModel, TagModel, CategoryModel } from "@/server/db/schema"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
 
@@ -9,9 +9,10 @@ import { Button } from "@/components/ui/button"
 // new model merging exam model id, name, and tag
 export interface ExamTagModel extends ExamModel {
   tag: TagModel["name"]
+  category: CategoryModel["name"]
 }
 
-export const columns: ColumnDef<Pick<ExamTagModel, "id" | "name" | "tag">>[] = [
+export const columns: ColumnDef<Pick<ExamTagModel, "id" | "name" | "category">>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -32,7 +33,7 @@ export const columns: ColumnDef<Pick<ExamTagModel, "id" | "name" | "tag">>[] = [
     },
   },
   {
-    accessorKey: "tag",
+    accessorKey: "category",
     header: ({ column }) => {
       return (
         <Button
@@ -46,8 +47,8 @@ export const columns: ColumnDef<Pick<ExamTagModel, "id" | "name" | "tag">>[] = [
       )
     },
     cell: ({ row }) => {
-      const { tag } = row.original
-      return <div className='text-right'> {tag}</div>
+      const { category } = row.original
+      return <div className='text-right'> {category}</div>
     },
   },
 ]

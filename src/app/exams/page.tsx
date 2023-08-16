@@ -1,6 +1,5 @@
-import { FC } from "react"
 import { db } from "@/server/db"
-import { exams, tags, tagsToExams } from "@/server/db/schema"
+import { categories, exams, tags, tagsToExams } from "@/server/db/schema"
 import { eq } from "drizzle-orm"
 
 import { DataTable } from "@/components/ui/data-table"
@@ -12,16 +11,16 @@ async function getData() {
     .select({
       id: exams.id,
       name: exams.name,
-      tag: tags.name,
+      category: categories.name
     })
     .from(exams)
     .innerJoin(tagsToExams, eq(tagsToExams.exam_id, exams.id))
     .innerJoin(tags, eq(tagsToExams.tag_id, tags.id))
-    .where(eq(exams.type, "laboratory"))
+    .innerJoin(categories, eq(categories.id, tags.category_id))
   return labsQuery
 }
 
-const page: FC = async () => {
+const page = async () => {
   const data = await getData()
   return (
     <div className='mx-auto py-10 max-h-fit'>
