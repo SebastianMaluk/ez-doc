@@ -9,10 +9,8 @@ import AuthOnNavbar from "./AuthOnNavbar"
 import { ModeToggle } from "./mode-toggle"
 import UserAccountNav from "./UserAccountNav"
 import { Sidebar } from "./Sidebar"
-import SignIn from "./SignIn"
 import { SidebarFooter } from "./SidebarFooter"
 import SidebarList from "./SidebarList"
-
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions)
@@ -42,12 +40,6 @@ const Navbar = async () => {
         <div className='flex md:hidden gap-4 items-end'>
           <Sidebar>
             <SidebarList />
-            <SidebarFooter>
-              <div className='flex flex-row items-center gap-4'>
-                {session?.user ? <UserAccountNav user={session.user} /> : <AuthOnNavbar />}
-                <ModeToggle align="start"/>
-              </div>
-            </SidebarFooter>
           </Sidebar>
         </div>
       </div>
