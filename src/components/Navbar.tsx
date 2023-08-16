@@ -9,7 +9,6 @@ import AuthOnNavbar from "./AuthOnNavbar"
 import { ModeToggle } from "./mode-toggle"
 import UserAccountNav from "./UserAccountNav"
 import { Sidebar } from "./Sidebar"
-import { SidebarFooter } from "./SidebarFooter"
 import SidebarList from "./SidebarList"
 
 const Navbar = async () => {
