@@ -8,7 +8,8 @@ interface examProps {
     description: string
     preparation: string | null
     type: "image" | "laboratory" | "other"
-    tag: string
+    tags: string[]
+    category: string
     laterality: string | null
     contrast: boolean | null
   }
@@ -33,7 +34,10 @@ const Exam: FC<examProps> = ({ exam }) => {
         <strong>Tipo:</strong> {tipo}
       </p>
       <p className='text-xl'>
-        <strong>Categoría:</strong> {exam.tag}
+        <strong>Categoría:</strong> {exam.category}
+      </p>
+      <p className='text-xl'>
+        <strong>Tags</strong> {exam.tags}
       </p>
       <p className='text-xl'>
         <strong>Lateralidad:</strong> {exam.laterality}
