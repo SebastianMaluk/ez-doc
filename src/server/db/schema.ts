@@ -133,6 +133,8 @@ export const examsToCartsRelations = relations(examsToCarts, ({ one }) => ({
 export const tags = mysqlTable("tags", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  category_id: int("category_id")
 })
 
 export type TagModel = InferModel<typeof tags, "select">
@@ -141,6 +143,10 @@ export const tagsRelations = relations(tags, ({ one }) => ({
   exams: one(exams, {
     fields: [tags.id],
     references: [exams.id],
+  }),
+  categories: one(categories, {
+    fields: [tags.category_id],
+    references: [categories.id],
   }),
 }))
 
@@ -159,3 +165,39 @@ export const tagsToExamsRelations = relations(tagsToExams, ({ one }) => ({
     references: [exams.id],
   }),
 }))
+
+export const categories = mysqlTable("categories", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+})
+
+export type CategoryModel = InferModel<typeof categories, "select">
+
+export const categoriesRelations = relations(categories, ({ one }) => ({
+  tags: one(tags, {
+    fields: [categories.id],
+    references: [tags.category_id],
+  }),
+}))
+
+export const orders = mysqlTable("orders", {
+  id: serial("id").primaryKey(),
+  user_id: varchar("user_id", { length: 255 }).notNull(),
+  purchase_date: timestamp("purchase_date", { mode: "date" }).notNull(),
+  payment_status: mysqlEnum("payment_status", ["pending", "paid", "canceled", "failed"]).notNull(),
+  amount: int("amount").notNull(),
+})
+
+export const ordersRelations = relations(orders, ({ one, many }) => ({
+  user: one(users, {
+    fields: [orders.user_id],
+    references: [users.id],
+  }),
+  examsToOrders: many(examsToOrders),
+}))
+
+export const examsToOrders = mysqlTable("examsToOrders", {
+  order_id: int("order_id").notNull(),
+  exam_id: int("exam_id").notNull(),
+})
