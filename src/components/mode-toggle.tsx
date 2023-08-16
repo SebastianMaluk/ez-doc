@@ -16,7 +16,7 @@ type ModeToggleProps = {
   align?: "center" | "end" | "start"
 }
 
-export function ModeToggle({align}: ModeToggleProps) {
+export function ModeToggle({ align }: ModeToggleProps) {
   const { setTheme } = useTheme()
 
   return (

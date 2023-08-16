@@ -1,12 +1,10 @@
 import { Route } from "next"
 import Link from "next/link"
 
-
 type Routes = {
   href: Route
   label: string
 }
-
 
 export default function SidebarList() {
   const links = [
@@ -17,7 +15,7 @@ export default function SidebarList() {
     {
       href: "/about",
       label: "About",
-    }
+    },
   ] as Routes[]
 
   return (

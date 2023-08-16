@@ -11,7 +11,7 @@ async function getData() {
     .select({
       id: exams.id,
       name: exams.name,
-      category: categories.name
+      category: categories.name,
     })
     .from(exams)
     .innerJoin(tagsToExams, eq(tagsToExams.exam_id, exams.id))

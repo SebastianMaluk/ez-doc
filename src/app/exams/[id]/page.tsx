@@ -44,15 +44,13 @@ const page: FC<pageProps> = async ({ params }: pageProps) => {
     .innerJoin(tagsToExams, eq(tagsToExams.tag_id, tags.id))
     .innerJoin(exams, eq(tagsToExams.exam_id, exams.id))
     .where(eq(exams.id, params.id))
-  
+
   const examWithTags: ExamWithTags = {
     ...examFound,
     tags: examTags.map((tag) => tag.tag),
   }
 
-  return (
-    <Exam exam={examWithTags} />
-  )
+  return <Exam exam={examWithTags} />
 }
 
 export default page

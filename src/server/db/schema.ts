@@ -134,7 +134,7 @@ export const tags = mysqlTable("tags", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
-  category_id: int("category_id")
+  category_id: int("category_id"),
 })
 
 export type TagModel = InferModel<typeof tags, "select">
