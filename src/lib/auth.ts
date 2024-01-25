@@ -1,5 +1,6 @@
 import Google from "@auth/core/providers/google"
 import NextAuth from "next-auth"
+import { env } from "@/env.mjs"
 
 export const {
   handlers: { GET, POST },
@@ -7,5 +8,5 @@ export const {
 } = NextAuth({
   providers: [Google],
   trustHost: true,
-  secret: process.env.AUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
 })
