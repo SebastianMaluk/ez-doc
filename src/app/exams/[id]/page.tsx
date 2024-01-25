@@ -1,6 +1,10 @@
 import { FC } from "react"
 import { db } from "@/lib/db"
-import { ExamModel, categories, exams, images, tags, tagsToExams } from "@/lib/db/schema"
+import { exams, ExamModel } from "@/lib/db/schema/exams"
+import { tags } from "@/lib/db/schema/tags"
+import { categories } from "@/lib/db/schema/categories"
+import { tagsToExams } from "@/lib/db/schema/tagsToExams"
+import { images } from "@/lib/db/schema/images"
 import { eq } from "drizzle-orm"
 
 import Exam from "@/components/Exam"
