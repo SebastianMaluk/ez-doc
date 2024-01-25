@@ -1,6 +1,6 @@
 "use client"
 
-import { ExamModel, TagModel, CategoryModel } from "@/server/db/schema"
+import { ExamModel, TagModel, CategoryModel } from "@/lib/db/schema"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
 

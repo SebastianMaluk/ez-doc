@@ -1,5 +1,8 @@
-import { db } from "@/server/db"
-import { categories, exams, tags, tagsToExams } from "@/server/db/schema"
+import { db } from "@/lib/db"
+import { categories } from "@/lib/db/schema/categories"
+import { exams } from "@/lib/db/schema/exams"
+import { tags } from "@/lib/db/schema/tags"
+import { tagsToExams } from "@/lib/db/schema/tagsToExams"
 import { eq } from "drizzle-orm"
 
 import { DataTable } from "@/components/ui/data-table"
