@@ -1,19 +1,16 @@
 import { Route } from "next"
 import Link from "next/link"
 import { Stethoscope } from "lucide-react"
-import { getServerSession } from "next-auth"
-
-import { authOptions } from "@/lib/auth"
 
 import AuthOnNavbar from "./AuthOnNavbar"
 import { ModeToggle } from "./mode-toggle"
 import UserAccountNav from "./UserAccountNav"
 import { Sidebar } from "./Sidebar"
 import SidebarList from "./SidebarList"
+import { auth } from "@/lib/auth"
 
 const Navbar = async () => {
-  const session = await getServerSession(authOptions)
-
+  const session = await auth()
   return (
     <div className='relative top-0 inset-x-0 bg-indigo-500 dark:bg-slate-800 z-10 py-2'>
       <div className='container max-w-7xl h-full mx-auto flex items-center justify-between gap-2'>

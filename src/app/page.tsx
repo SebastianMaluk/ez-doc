@@ -1,25 +1,19 @@
 import Link from "next/link"
 import Balancer from "react-wrap-balancer"
 
-import { api } from "@/lib/api/server"
-import { getAuthSession } from "@/lib/auth"
 import { Input } from "@/components/ui/input"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Product from "@/components/Product"
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import HelloFromClient from "./hello-from-client"
-
+import { auth } from "@/lib/auth"
 export default async function Page() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const session = await getAuthSession()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { greeting } = await api.example.hello.fetch({
-    text: "Test RSC TRPC Call",
-  })
+  const session = await auth()
+
   return (
     <div className='flex flex-col items-center justify-center py-6'>
       <div className='text-2xl text-center'>
+        {session && (
+          <div>
+            Signed in as {session?.user?.name} <br />
+          </div>
+        )}
         <Balancer>
           Déjate de hacer filas, perder tiempo y dinero
           <br /> Pide tu receta online y hazte responsable de tu salud
@@ -52,9 +46,6 @@ export default async function Page() {
           </button>
         </div>
       </div>
-      {/* <p>{greeting}</p> */}
-      {/* <HelloFromClient /> */}
-      {/* <Product name='Banana' /> */}
     </div>
   )
 }
