@@ -8,8 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import { ThemeProvider } from "@/components/theme-provider"
-
-import { ClientProviders } from "./client-providers"
+import { GeistSans } from "geist/font/sans"
 
 export const metadata = {
   title: "Easy Doctor",
