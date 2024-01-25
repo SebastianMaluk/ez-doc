@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-import "@/styles/globals.css"
+import "@/globals.css"
 
 import { Inter } from "next/font/google"
 
