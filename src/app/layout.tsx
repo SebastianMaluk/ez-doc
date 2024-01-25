@@ -2,8 +2,6 @@ import { cn } from "@/lib/utils"
 
 import "@/globals.css"
 
-import { Inter } from "next/font/google"
-
 import { Toaster } from "@/components/ui/toaster"
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
@@ -15,19 +13,11 @@ export const metadata = {
   description: "Exams made easy",
 }
 
-const inter = Inter({ subsets: ["latin"] })
-
-export default function RootLayout({
-  children,
-  authModal,
-}: {
-  children: React.ReactNode
-  authModal: React.ReactNode
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang='en'
-      className={cn("bg-white text-slate-900 antialiased light", inter.className)}
+      className={cn("bg-white text-slate-900 antialiased light", GeistSans.className)}
       suppressHydrationWarning
     >
       <head>
@@ -35,17 +25,14 @@ export default function RootLayout({
         <meta name='description' content={metadata.description} />
         <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
       </head>
-      <ClientProviders>
-        <body className='flex flex-col min-h-screen bg-slate-50 antialiased dark:bg-slate-900 dark:text-slate-100'>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-            <Navbar />
-            {authModal}
-            <div className='container flex-grow max-w-7xl mx-auto'>{children}</div>
-            <Footer />
-            <Toaster />
-          </ThemeProvider>
-        </body>
-      </ClientProviders>
+      <body className='flex flex-col min-h-screen bg-slate-50 antialiased dark:bg-slate-900 dark:text-slate-100'>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <Navbar />
+          <div className='container flex-grow max-w-7xl mx-auto'>{children}</div>
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
