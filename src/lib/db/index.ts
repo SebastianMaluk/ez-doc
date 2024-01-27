@@ -1,4 +1,3 @@
-import { env } from "@/env.mjs"
 import { connect } from "@planetscale/database"
 import { drizzle } from "drizzle-orm/planetscale-serverless"
 
@@ -10,7 +9,7 @@ import * as images from "@/lib/db/schema/images"
 import * as tags from "@/lib/db/schema/tags"
 
 const connection = connect({
-  url: env.DATABASE_URL_STAGING,
+  url: process.env.DATABASE_URL_STAGING,
 })
 
 export const db = drizzle(connection, {
